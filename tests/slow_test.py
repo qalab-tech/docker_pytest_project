@@ -27,10 +27,10 @@ def test_slow_get_all_customers():
 @pytest.mark.slow
 def test_get_all_customers():
     # Test retrieve all customers
-    time.sleep(5)
+    time.sleep(3)
     response = requests.get(BASE_URL)
     assert response.status_code == 200
-    assert isinstance(response.json(5), list)  # Checking is response list
+    assert isinstance(response.json(), list)  # Checking is response list
 
 @pytest.mark.slow
 def test_create_customer():
