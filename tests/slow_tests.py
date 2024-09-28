@@ -22,15 +22,15 @@ def new_customer():
 @pytest.mark.slow
 def test_get_all_customers():
     # Test retrieve all customers
-    time.sleep(5000)
+    time.sleep(5)
     response = requests.get(BASE_URL)
     assert response.status_code == 200
-    assert isinstance(response.json(), list)  # Checking is response list
+    assert isinstance(response.json(5), list)  # Checking is response list
 
 @pytest.mark.slow
 def test_create_customer():
     # Test create new customer
-    time.sleep(5000)
+    time.sleep(5)
     data = {"name": "New User", "address": "5678 New Ave"}
     response = requests.post(BASE_URL, json=data)
     assert response.status_code == 201
@@ -41,7 +41,7 @@ def test_create_customer():
 
 @pytest.mark.slow
 def test_get_customer(new_customer):
-    time.sleep(5000)
+    time.sleep(5)
     # Test retrieve a customer by it's customer_id
     customer_id = new_customer["customer_id"]
     response = requests.get(f"{BASE_URL}/{customer_id}")
@@ -54,7 +54,7 @@ def test_get_customer(new_customer):
 @pytest.mark.slow
 def test_update_customer(new_customer):
     # Test customer update
-    time.sleep(5000)
+    time.sleep(5)
     customer_id = new_customer["customer_id"]
     updated_data = {"name": "Updated User", "address": "Updated Address"}
     response = requests.put(f"{BASE_URL}/{customer_id}", json=updated_data)
@@ -75,7 +75,7 @@ def test_update_customer(new_customer):
 
 @pytest.mark.slow
 def test_delete_customer(new_customer):
-    time.sleep(5000)
+    time.sleep(5)
     # Test Delete Customer
     customer_id = new_customer["customer_id"]
     response = requests.delete(f"{BASE_URL}/{customer_id}")
