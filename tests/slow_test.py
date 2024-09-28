@@ -37,7 +37,7 @@ def test_get_all_customers():
     time.sleep(3)
     response = requests.get(BASE_URL)
     assert response.status_code == 200
-    assert isinstance(response.json(), list)  # Checking is response list
+    assert isinstance(response.json(), list)  # Checking is response list or not
 
 @pytest.mark.slow
 def test_create_customer():
