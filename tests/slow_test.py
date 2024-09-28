@@ -19,8 +19,8 @@ def new_customer():
     assert response.status_code == 201
     return response.json()  # Return new customer's data
 
-
-def slow_test_get_all_customers():
+@pytest.mark.slow
+def test_slow_get_all_customers():
     time.sleep(5)
     pass
 
