@@ -25,6 +25,13 @@ def test_slow_get_all_customers():
     pass
 
 @pytest.mark.slow
+def test_get_health():
+    time.sleep(4)
+    pass
+
+
+
+@pytest.mark.slow
 def test_get_all_customers():
     # Test retrieve all customers
     time.sleep(3)
