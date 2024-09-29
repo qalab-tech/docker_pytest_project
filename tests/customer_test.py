@@ -2,7 +2,7 @@ import requests
 import pytest
 import yaml
 
-# Reading configuration from config.yaml
+# Read configuration from config.yaml
 with open("tests/pytests_config.yaml", 'r') as file:
     config = yaml.safe_load(file)
 

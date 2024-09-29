@@ -1,28 +1,46 @@
-# Исключаем конфигурации PyCharm
+# Ignore Pycharm configuration
 .idea/
 
-# Исключаем кеши pytest
-.pytest_cache/
+# Ignore Playwright cache
+node_modules/
+playwright-report/
+test-results/
+videos/
+trace/
 
-# Исключаем виртуальные окружения
-venv/
-Lib/
-include/
-Scripts/
+# Ignore TypeScript temp files and folders
+dist/
+build/
+*.tsbuildinfo
 
-# Исключаем кэш Python
+# Ignore Python Cache
 __pycache__/
-
-# Исключаем файлы логов и тестов (если не нужны в контейнере)
-*.log
-#tests/
-
-# Исключаем файлы конфигурации тестов
-test_config.yaml
-
-# Исключаем любые другие ненужные файлы
 *.pyc
 *.pyo
+
+# Ignore temp files from tests/
+tests/
+*.log
+*.tmp
+*.swp
+
+# Ignore system files
 .DS_Store
+Thumbs.db
 
+# Ignore test configuration files
+test_config.yaml
 
+# Ignore venv files and folders
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Ignore temporary IDE files
+*.iml
+.vscode/
+
+# Ignore Playwright cache
+.cache/
