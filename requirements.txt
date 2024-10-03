@@ -6,3 +6,4 @@ pyyaml
 grpcio
 grpcio-testing
 grpcio-tools
+faker

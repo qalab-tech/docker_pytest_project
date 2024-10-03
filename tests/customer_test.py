@@ -1,8 +1,13 @@
 import requests
 import pytest
 import yaml
+from faker.proxy import Faker
 
-# Read configuration from config.yaml
+
+fake = Faker()
+
+
+# Reading configuration from config.yaml
 with open("tests/pytests_config.yaml", 'r') as file:
     config = yaml.safe_load(file)
 
@@ -10,22 +15,26 @@ with open("tests/pytests_config.yaml", 'r') as file:
 BASE_URL = config["Base Application URL"]
 
 @pytest.fixture
-def new_customer():
+def new_customer_data():
+    return {"name": fake.name(), "address": fake.address()}
+
+@pytest.fixture
+def new_customer(new_customer_data):
     # New customer creation fixture
-    data = {"name": "Test User", "address": "1234 Test St"}
+    data = new_customer_data
     response = requests.post(BASE_URL, json=data)
     assert response.status_code == 201
-    return response.json()  # Return new customer's data
+    return response.json()  # Return new customer data
 
 def test_get_all_customers():
     # Test retrieve all customers
     response = requests.get(BASE_URL)
     assert response.status_code == 200
-    assert isinstance(response.json(), list)  # Убедитесь, что ответ является списком
+    assert isinstance(response.json(), list)  # Check response is list instance
 
-def test_create_customer():
+def test_create_customer(new_customer_data):
     # Test create new customer
-    data = {"name": "New User", "address": "5678 New Ave"}
+    data = new_customer_data
     response = requests.post(BASE_URL, json=data)
     assert response.status_code == 201
     customer = response.json()
@@ -69,7 +78,7 @@ def test_delete_customer(new_customer):
     assert response.status_code == 200
     assert response.json()["message"] == "Customer deleted"
 
-    # Test delete non-existing customer
+    # Test delete non-existing (already deleted) customer
     response = requests.get(f"{BASE_URL}/{customer_id}")
     assert response.status_code == 404
     assert response.json()["error"] == "Customer not found"
