@@ -5,7 +5,7 @@ WORKDIR /app
 # Copy requirements.txt to docker container
 COPY requirements.txt .
 
-# Installing dependences
+# Installing dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 
